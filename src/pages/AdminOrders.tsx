@@ -59,8 +59,9 @@ const AdminOrders = () => {
                       <img
                         src={
                           item?.images
-                            ? item?.images[0]
-                            : order.product.images[0]  
+                            ? item?.images[0] : 
+                            ''
+                            // : order.product.images[0]  
                         }
                         className="w-32 h-32"
                         alt={item?.name}
