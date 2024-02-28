@@ -70,6 +70,7 @@ const CustomPoster = () => {
             </h3>
             <div className="flex items-center gap-3">
               <button
+              type="button"
                 className={`px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-medium cursor-pointer ${
                   format == "A3" ? "bg-orange-500 text-white" : ""
                 }`}
@@ -136,7 +137,7 @@ const CustomPoster = () => {
           <h4 className="my-6 text-xl font-medium">
             Цена: {formatPrice(Number(currentPrice) * Number(itemQuantity))}
           </h4>
-          <Button className="w-full" disabled={imageUrls.length == 0}>
+          <Button type="submit" className="w-full" disabled={imageUrls.length == 0}>
             Заказать сейчас
           </Button>
         </form>
