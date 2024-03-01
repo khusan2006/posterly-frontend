@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 const Footer = () => {
   return (
-    <footer className="bg-white flex-grow-0 pb-16">
+    <footer className="bg-white flex-grow-0 ">
       <MaxWidthWrapper>
         <div className="border-t border-gray-200">
           <div className="pb-8 pt-16">
@@ -37,7 +37,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* <div className="py-10 md:flex md:items-center md:justify-between">
+        <div className="py-10 md:flex md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} All Rights Reserved
@@ -66,7 +66,7 @@ const Footer = () => {
               </NavLink>
             </div>
           </div>
-        </div> */}
+        </div>
       </MaxWidthWrapper>
     </footer>
   );

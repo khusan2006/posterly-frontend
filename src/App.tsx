@@ -11,6 +11,7 @@ import ThankYouPage from "./pages/ThankYou";
 import AdminCreatePoster from "./pages/AdminCreatePoster";
 import AdminOrders from "./pages/AdminOrders";
 import CustomPoster from "./pages/CustomPoster";
+import CookieConsent from "./components/CookieConsent";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -40,6 +41,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+      <CookieConsent />
     </QueryClientProvider>
   );
 };
