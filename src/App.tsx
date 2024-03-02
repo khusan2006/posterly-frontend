@@ -12,6 +12,8 @@ import AdminCreatePoster from "./pages/AdminCreatePoster";
 import AdminOrders from "./pages/AdminOrders";
 import CustomPoster from "./pages/CustomPoster";
 import CookieConsent from "./components/CookieConsent";
+import PrivacyPolicy from "./components/policies/PrivacyPolicy";
+import TermsOfUse from "./components/policies/TermsOfUse";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -38,6 +40,8 @@ const App = () => {
             <Route element={<Checkout />} path="checkout" />
             <Route element={<Order />} path="order" />
             <Route element={<ThankYouPage />} path="thank-you" />
+            <Route element={<PrivacyPolicy />} path="privacy-policy" />
+            <Route element={<TermsOfUse />} path="terms" />
           </Route>
         </Routes>
       </BrowserRouter>
