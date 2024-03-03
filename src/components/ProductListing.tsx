@@ -30,7 +30,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         to={`/product/${product._id}`}
       >
         <div className="flex flex-col w-full">
-          <div className="h-[50vh]">
+          <div className="md:h-[50vh]">
             <ImageSlider urls={product.images as string[]} />
           </div>
           <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-0 md:items-center mt-4">

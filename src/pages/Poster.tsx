@@ -165,7 +165,7 @@ const Poster = () => {
 
           {/* Product images */}
           <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 flex gap-2">
-            <div className="w-[80%]">
+            <div className="w-[85%]">
               <img
                 className="h-[90%] w-full "
                 src={product.images[activeImage]}
