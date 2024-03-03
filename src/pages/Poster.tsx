@@ -95,7 +95,7 @@ const Poster = () => {
             </ol>
 
             <div className="mt-4">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h1 className="text-3xl font-bold tracking-wider text-gray-900 sm:text-[2rem]">
                 {product.name}
               </h1>
             </div>
