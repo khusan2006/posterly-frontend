@@ -14,7 +14,8 @@ import CustomPoster from "./pages/CustomPoster";
 import CookieConsent from "./components/CookieConsent";
 import PrivacyPolicy from "./components/policies/PrivacyPolicy";
 import TermsOfUse from "./components/policies/TermsOfUse";
-
+import { useEffect } from "react";
+import { initGA, logPageView } from './google-analytics';
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,6 +25,10 @@ const App = () => {
       },
     },
   });
+  useEffect(() => {
+    initGA()
+    logPageView()
+  }, [])
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
