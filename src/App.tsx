@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -15,7 +15,7 @@ import CookieConsent from "./components/CookieConsent";
 import PrivacyPolicy from "./components/policies/PrivacyPolicy";
 import TermsOfUse from "./components/policies/TermsOfUse";
 import { useEffect } from "react";
-import { initGA, logPageView } from './google-analytics';
+import { initGA, logPageView } from "./google-analytics";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -26,12 +26,12 @@ const App = () => {
     },
   });
   useEffect(() => {
-    initGA()
-    logPageView()
-  }, [])
+    initGA();
+    logPageView();
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route element={<AppLayout />} path="/">
             <Route index element={<Home />} />
@@ -49,7 +49,7 @@ const App = () => {
             <Route element={<TermsOfUse />} path="terms" />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
       <CookieConsent />
     </QueryClientProvider>
   );
