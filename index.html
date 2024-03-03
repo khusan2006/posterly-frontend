@@ -43,6 +43,12 @@
       gtag("config", "G-2XJJ0QCQ41");
     </script>
     <title>Posterly.uz | Posters in Uzbekistan</title>
+    <script>
+      // Redirect to index.html for client-side routing
+      if (window.location.pathname !== '/' && !window.location.pathname.startsWith('/static')) {
+          window.location.replace("/index.html");
+      }
+  </script>
   </head>
   <body style="font-family: Inter">
     <div id="root"></div>
