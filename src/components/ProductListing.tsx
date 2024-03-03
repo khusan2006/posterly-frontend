@@ -30,7 +30,9 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         to={`/product/${product._id}`}
       >
         <div className="flex flex-col w-full">
-          <ImageSlider urls={product.images as string[]} />
+          <div className="h-[50vh]">
+            <ImageSlider urls={product.images as string[]} />
+          </div>
           <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-0 md:items-center mt-4">
             <h3 className=" font-medium text-sm md:text-base text-gray-700 flex line-clamp-1">
               {truncate(product.name as string, 20)}
