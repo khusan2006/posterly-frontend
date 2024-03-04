@@ -48,6 +48,7 @@ const Posters = () => {
     return data;
   }, [data]);
   const filters = useUrlParameters();
+  console.log(filters)
   const memoizedFilters = useMemo(() => {
     return Object.fromEntries(filters);
   }, [filters]);
@@ -159,7 +160,7 @@ const Posters = () => {
               : null}
           </div>
         </div>
-        <div className="mf:flex items-center gap-3 hidden">
+        <div className="md:flex items-center gap-3 hidden">
           <p className="text-sm">Сортировать по:</p>
           <Select onValueChange={(value) => setSortBy(value)}>
             <SelectTrigger className="w-[fit-content] h-[20px] flex items-center text-sm border-0">

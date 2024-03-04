@@ -115,7 +115,7 @@ const Poster = () => {
 
               <div className="mt-4 space-y-2">
                 <h3 className="text-base font-normal text-muted-foreground">
-                  choose format{" "}
+                  выбрать формат
                 </h3>
                 <div className="flex items-center gap-3">
                   <button
@@ -139,7 +139,7 @@ const Poster = () => {
               </div>
               <div className="mt-4 space-y-2">
                 <h3 className="text-base font-normal text-muted-foreground">
-                  choose frame
+                  выбрать рамку
                 </h3>
                 <div className="flex items-center gap-3">
                   <div

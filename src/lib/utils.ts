@@ -15,11 +15,11 @@ export function formatPrice(
 
   const numericPrice = typeof price === "string" ? parseFloat(price) : price;
 
-  const formattedPrice = new Intl.NumberFormat("uz-UZ", {
+  const formattedPrice = new Intl.NumberFormat("ru-RU", {
     style: "decimal",
     notation,
     maximumFractionDigits: 0,
-  }).format(numericPrice);
+  }).format(numericPrice).replace(/\./, ' ');
 
   return `${formattedPrice} UZS`;
 }
