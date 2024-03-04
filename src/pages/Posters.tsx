@@ -36,7 +36,7 @@ const Posters = () => {
   [];
   const [sortBy, setSortBy] = useState<string>("");
 
-  const POSTER_PER_PAGINATION = 25;
+  const POSTER_PER_PAGINATION = 24;
 
   const navigate = useNavigate();
 

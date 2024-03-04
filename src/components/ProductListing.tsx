@@ -35,7 +35,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           </div>
           <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-0 md:items-center mt-4">
             <h3 className=" font-medium text-sm md:text-base text-gray-700 flex line-clamp-1">
-              {truncate(product.name as string, 20)}
+              {truncate(product.name as string, 17)}
             </h3>
 
             <p className="font-medium text-sm md:text-base text-gray-900">
