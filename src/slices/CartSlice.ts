@@ -100,7 +100,11 @@ export const getTotalCartQuantity = (state: { cart: StateType }) =>
   }, 0);
 
 export const getTotalCartPrice = (state: { cart: StateType }) =>
-  state.cart.cart.reduce((sum, item):number => Number(sum) + Number(item.totalPrice), 0);
+  state.cart.cart.reduce(
+    (sum, item): number => Number(sum) + Number(item.totalPrice),
+    0
+  );
 
-// export const getCurrentQuantityById = (id) => (state) =>
-//   state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+export const getCurrentQuantityById =
+  (id: string) => (state: { cart: StateType }) =>
+    state.cart.cart.find((item) => item.product._id === id)?.quantity ?? 0;

@@ -1,5 +1,5 @@
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "./ui/select";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "../components/ui/select";
 import { FormSelectProps } from "@/lib/types";
 
 const FormSelect = ({ form, label, data, name }: FormSelectProps<string[]>) => {  

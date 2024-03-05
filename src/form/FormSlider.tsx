@@ -5,8 +5,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Slider } from "./ui/slider";
+} from "../components/ui/form";
+import { Slider } from "../components/ui/slider";
 import { useState } from "react";
 
 const FormSlider = ({ form, name, label }: FormSliderProps) => {

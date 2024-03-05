@@ -1,4 +1,4 @@
-import { getPoster } from "@/api/posters";
+import { getPosters } from "@/api/posters";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/ProductReel";
 import { Button } from "@/components/ui/button";
@@ -14,10 +14,11 @@ import { toast } from "sonner";
 
 const Poster = () => {
   const { productId } = useParams();
-  const { data: product } = useQuery({
-    queryKey: ["poster", productId],
-    queryFn: () => getPoster(productId as string),
+  const { data } = useQuery({
+    queryKey: ["posters"],
+    queryFn: () => getPosters(),
   });
+  const product = data?.filter(item => item._id === productId)[0]
   const [format, setFormat] = useState("A3");
   const [frame, setFrame] = useState("с рамкой");
   const [currentPrice, setCurrentPrice] = useState(0);

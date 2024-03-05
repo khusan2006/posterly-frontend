@@ -18,11 +18,11 @@ export type FormInputProps = {
 
 export type posterData = {
   _id?: string | undefined;
-  name?: string;
-  price?: string[];
-  categories?: string[];
-  images: string[] | undefined;
-  sold?: string;
+  name: string;
+  price: string[];
+  categories: string[];
+  images: string[] ;
+  sold: string;
   createdAt?: Date;
 };
 

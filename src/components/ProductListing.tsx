@@ -1,10 +1,18 @@
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 import { cn, formatPrice, truncate } from "@/lib/utils";
 import ImageSlider from "./ImageSlider";
-import { NavLink } from "react-router-dom";
-import { ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { posterData } from "@/lib/types";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  decreaseItemQuantity,
+  getCurrentQuantityById,
+  increaseItemQuantity,
+} from "@/slices/CartSlice";
+import { toast } from "sonner";
 interface ProductListingProps {
   product: posterData | undefined;
   index: number;
@@ -12,6 +20,49 @@ interface ProductListingProps {
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const productQuantityinCart = useSelector(
+    getCurrentQuantityById(product?._id as string)
+  );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleCartClick = (
+    e: MouseEvent<HTMLButtonElement>,
+    product: posterData
+  ) => {
+    e.stopPropagation();
+    if (!product.price) return;
+    const data = {
+      quantity: 1,
+      totalPrice: product.price,
+      format: "A3",
+      frame: "с рамкой",
+      product: product,
+    };
+    dispatch(addItem(data));
+    toast.success("плакат добавлен в корзину");
+  };
+  const handleNavigation = () => {
+    navigate(`/product/${product?._id}`);
+  };
+  const handleItemQuantity = (
+    e: MouseEvent<SVGSVGElement>,
+    type: "increase" | "decrease"
+  ) => {
+    e.stopPropagation();
+    const item = {
+      quantity: 1,
+      totalPrice: product?.price,
+      format: "A3",
+      frame: "с рамкой",
+      product: product,
+    };
+    if (type === "decrease") {
+      dispatch(decreaseItemQuantity(item));
+    }
+    if (type === "increase") {
+      dispatch(increaseItemQuantity(item));
+    }
+  };
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -19,15 +70,16 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
 
     return () => clearTimeout(timer);
   }, [index]);
+
   if (!product || !isVisible) return <ProductPlaceholder />;
 
   if (isVisible && product) {
     return (
-      <NavLink
+      <div
         className={cn("invisible h-full w-full cursor-pointer group/main", {
           "visible animate-in fade-in-5": isVisible,
         })}
-        to={`/product/${product._id}`}
+        onClick={handleNavigation}
       >
         <div className="flex flex-col w-full">
           <div className="md:h-[50vh]">
@@ -54,15 +106,36 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
               продано: {product.sold}
             </h3>
 
-            <p className="font-medium text-base text-gray-900">
-              <ShoppingCart
-                aria-hidden="true"
-                className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-              />
-            </p>
+            {productQuantityinCart > 0 ? (
+              <div className="flex items-center gap-1">
+                <Minus
+                  className="cursor-pointer"
+                  size={16}
+                  onClick={(e) => {
+                    handleItemQuantity(e, "decrease");
+                  }}
+                />
+                {productQuantityinCart}
+                <Plus
+                  className="cursor-pointer"
+                  size={16}
+                  onClick={(e) => handleItemQuantity(e, "increase")}
+                />
+              </div>
+            ) : (
+              <button
+                onClick={(e) => handleCartClick(e, product)}
+                className="font-medium text-base text-gray-900"
+              >
+                <ShoppingCart
+                  aria-hidden="true"
+                  className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                />
+              </button>
+            )}
           </div>
         </div>
-      </NavLink>
+      </div>
     );
   }
 };

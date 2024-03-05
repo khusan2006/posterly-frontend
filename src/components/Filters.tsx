@@ -12,10 +12,10 @@ import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "./ui/form";
 import { FilterSchema } from "@/lib/schema";
-import FormSelect from "./FormSelect";
+import FormSelect from "../form/FormSelect";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategories } from "@/api/categories";
-import FormSlider from "./FormSlider";
+import FormSlider from "../form/FormSlider";
 import { useNavigate } from "react-router-dom";
 
 const data = ["0-100", "100-400", "above 400"];

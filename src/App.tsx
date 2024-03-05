@@ -1,20 +1,20 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
+import { lazy, useEffect } from "react";
 import AppLayout from "./components/AppLayout";
 import Home from "./pages/Home";
-import Admin from "./pages/Admin";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Posters from "./pages/Posters";
-import Poster from "./pages/Poster";
-import Checkout from "./pages/Checkout";
+const Posters = lazy(() => import('./pages/Posters'))
+const Poster = lazy(() => import('./pages/Poster'))
+const AdminOrders = lazy(() => import('./pages/AdminOrders'));
+const Admin = lazy(() => import('./pages/Admin'))
+const CustomPoster = lazy(() => import('./pages/CustomPoster'))
+const Checkout = lazy(() => import('./pages/Checkout'))
+const AdminCreatePoster = lazy(() => import('./pages/AdminCreatePoster'))
 import Order from "./pages/Order";
 import ThankYouPage from "./pages/ThankYou";
-import AdminCreatePoster from "./pages/AdminCreatePoster";
-import AdminOrders from "./pages/AdminOrders";
-import CustomPoster from "./pages/CustomPoster";
 import CookieConsent from "./components/CookieConsent";
 import PrivacyPolicy from "./components/policies/PrivacyPolicy";
 import TermsOfUse from "./components/policies/TermsOfUse";
-import { useEffect } from "react";
 import { initGA, logPageView } from "./google-analytics";
 const App = () => {
   const queryClient = new QueryClient({
