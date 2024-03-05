@@ -19,13 +19,13 @@ const CustomPoster = () => {
   const form = useForm();
   useEffect(() => {
     if (format === "A4" && frame === "без рамки") {
-      setCurrentPrice("70000");
+      setCurrentPrice("50000");
     } else if (format === "A4" && frame === "с рамкой") {
       setCurrentPrice("80000");
     } else if (format === "A3" && frame === "с рамкой") {
-      setCurrentPrice("100000");
+      setCurrentPrice("120000");
     } else if (format === "A3" && frame === "без рамки") {
-      setCurrentPrice("90000");
+      setCurrentPrice("70000");
     }
   }, [format, frame]);
   useEffect(() => {
