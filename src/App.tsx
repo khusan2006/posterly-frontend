@@ -1,21 +1,22 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import AppLayout from "./components/AppLayout";
 import Home from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-const Posters = lazy(() => import('./pages/Posters'))
-const Poster = lazy(() => import('./pages/Poster'))
-const AdminOrders = lazy(() => import('./pages/AdminOrders'));
-const Admin = lazy(() => import('./pages/Admin'))
-const CustomPoster = lazy(() => import('./pages/CustomPoster'))
-const Checkout = lazy(() => import('./pages/Checkout'))
-const AdminCreatePoster = lazy(() => import('./pages/AdminCreatePoster'))
+const Posters = lazy(() => import("./pages/Posters"));
+const Poster = lazy(() => import("./pages/Poster"));
+const AdminOrders = lazy(() => import("./pages/AdminOrders"));
+const Admin = lazy(() => import("./pages/Admin"));
+const CustomPoster = lazy(() => import("./pages/CustomPoster"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const AdminCreatePoster = lazy(() => import("./pages/AdminCreatePoster"));
 import Order from "./pages/Order";
 import ThankYouPage from "./pages/ThankYou";
 import CookieConsent from "./components/CookieConsent";
 import PrivacyPolicy from "./components/policies/PrivacyPolicy";
 import TermsOfUse from "./components/policies/TermsOfUse";
 import { initGA, logPageView } from "./google-analytics";
+import LoadingPage from "./components/LoadingPage";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -32,23 +33,25 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <HashRouter>
-        <Routes>
-          <Route element={<AppLayout />} path="/">
-            <Route index element={<Home />} />
-            <Route element={<Admin />} path="admin">
-              <Route element={<AdminCreatePoster />} index path="posters" />
-              <Route element={<AdminOrders />} path="orders" />
+        <Suspense fallback={<LoadingPage />}>
+          <Routes>
+            <Route element={<AppLayout />} path="/">
+              <Route index element={<Home />} />
+              <Route element={<Admin />} path="admin">
+                <Route element={<AdminCreatePoster />} index path="posters" />
+                <Route element={<AdminOrders />} path="orders" />
+              </Route>
+              <Route element={<Posters />} path="products" />
+              <Route element={<Poster />} path="/product/:productId" />
+              <Route element={<CustomPoster />} path="product/custom" />
+              <Route element={<Checkout />} path="checkout" />
+              <Route element={<Order />} path="order" />
+              <Route element={<ThankYouPage />} path="thank-you" />
+              <Route element={<PrivacyPolicy />} path="privacy-policy" />
+              <Route element={<TermsOfUse />} path="terms" />
             </Route>
-            <Route element={<Posters />} path="products" />
-            <Route element={<Poster />} path="/product/:productId" />
-            <Route element={<CustomPoster />} path="product/custom" />
-            <Route element={<Checkout />} path="checkout" />
-            <Route element={<Order />} path="order" />
-            <Route element={<ThankYouPage />} path="thank-you" />
-            <Route element={<PrivacyPolicy />} path="privacy-policy" />
-            <Route element={<TermsOfUse />} path="terms" />
-          </Route>
-        </Routes>
+          </Routes>
+        </Suspense>
       </HashRouter>
       <CookieConsent />
     </QueryClientProvider>
