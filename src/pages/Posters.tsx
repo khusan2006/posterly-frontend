@@ -34,9 +34,7 @@ const BREADCRUMBS = [
 ];
 const Posters = () => {
   const [currentPaginationNumber, setCurrentPaginationNumber] = useState(1);
-  [];
   const [sortBy, setSortBy] = useState<string>("");
-
 
   const navigate = useNavigate();
 

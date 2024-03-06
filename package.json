@@ -30,7 +30,7 @@
     "embla-carousel-autoplay": "^8.0.0-rc23",
     "embla-carousel-react": "^8.0.0-rc23",
     "firebase": "^10.8.0",
-    "framer-motion": "^11.0.5",
+    "framer-motion": "^7.5.3",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.330.0",
     "query-string": "^8.2.0",
