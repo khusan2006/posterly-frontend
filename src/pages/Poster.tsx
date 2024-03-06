@@ -168,7 +168,7 @@ const Poster = () => {
           <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 flex gap-2">
             <div className="w-[85%]">
               <img
-                className="h-[80%] w-full aspect-[2/3]"
+                className="h-[65%] w-[90%] aspect-[2/4]"
                 src={product.images[activeImage]}
                 alt={product.name}
               />
