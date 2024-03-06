@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/config";
 import { posterData } from "@/lib/types";
 type Poster = {
   _id?: string | undefined;
@@ -26,7 +27,7 @@ export const createPoster = async (data: Poster) => {
   };
 
   try {
-    const response = await fetch("https://shark-app-qka6s.ondigitalocean.app/posters", {
+    const response = await fetch(`${BASE_URL}/posters`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +47,7 @@ export const createPoster = async (data: Poster) => {
 
 export const getPosters = async () => {
   try {
-    const res = await fetch("https://shark-app-qka6s.ondigitalocean.app/posters");
+    const res = await fetch(`${BASE_URL}/posters`);
     const data: posterData[] = await res.json();
 
     return data;
@@ -57,7 +58,7 @@ export const getPosters = async () => {
 
 export const getPoster = async (id: string) => {
   try {
-    const response = await fetch(`https://shark-app-qka6s.ondigitalocean.app/posters/${id}`);
+    const response = await fetch(`${BASE_URL}/posters/${id}`);
     if (!response.ok) {
       throw new Error("Failed to fetch poster");
     }
@@ -71,7 +72,7 @@ export const getPoster = async (id: string) => {
 
 export const createCustomPoster = async (data: {name: string, images: string[], price: string}) => {
   try {
-    const response = await fetch("https://shark-app-qka6s.ondigitalocean.app/custom", {
+    const response = await fetch(`${BASE_URL}/custom`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +92,7 @@ export const createCustomPoster = async (data: {name: string, images: string[], 
 
 export const getLastCustomPoster = async () => {
   try {
-    const res = await fetch("https://shark-app-qka6s.ondigitalocean.app/custom");
+    const res = await fetch(`${BASE_URL}/custom`);
     const data: posterData[] = await res.json();
 
     return data[0];
@@ -102,7 +103,7 @@ export const getLastCustomPoster = async () => {
 
 export const getCustomPosters = async () => {
   try {
-    const res = await fetch("https://shark-app-qka6s.ondigitalocean.app/custom");
+    const res = await fetch(`${BASE_URL}/custom`);
     const data: posterData[] = await res.json();
 
     return data;
@@ -112,7 +113,7 @@ export const getCustomPosters = async () => {
 };
 export async function updatePosterSold(id: string, quantity: number) {
   try {
-    const response = await fetch(`https://shark-app-qka6s.ondigitalocean.app/posters/${id}/sold`, {
+    const response = await fetch(`${BASE_URL}/posters/${id}/sold`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

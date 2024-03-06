@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/config";
 import { CartData } from "@/lib/types";
 
 type Order = {
@@ -9,7 +10,7 @@ type Order = {
 
 export const createOrder = async (data: Order) => {
   try {
-    const response = await fetch("https://shark-app-qka6s.ondigitalocean.app/orders", {
+    const response = await fetch(`${BASE_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +29,7 @@ export const createOrder = async (data: Order) => {
 
 export const getOrders = async () => {
     try {
-      const res = await fetch("https://shark-app-qka6s.ondigitalocean.app/orders");
+      const res = await fetch(`${BASE_URL}/orders`);
       const data = await res.json();
   
       return data;

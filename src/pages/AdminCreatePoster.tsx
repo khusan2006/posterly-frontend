@@ -1,7 +1,7 @@
 import { FieldValues, useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
-import FormInput from "@/form/FormInput";
+import FormInput from "@/components/form/FormInput";
 import { Button } from "@/components/ui/button";
 import { PosterFormSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";

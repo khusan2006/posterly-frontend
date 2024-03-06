@@ -1,8 +1,9 @@
+import { BASE_URL } from "@/config";
 import { shuffleArray } from "@/lib/utils";
 
 export const getCategories = async () => {
   try {
-    const res = await fetch("https://shark-app-qka6s.ondigitalocean.app/categories");
+    const res = await fetch(`${BASE_URL}/categories`);
     const data = await res.json();
     const shuffledArray = shuffleArray(data);
     return shuffledArray.slice(0, 5);
@@ -13,7 +14,7 @@ export const getCategories = async () => {
 
 export const getAllCategories = async () => {
   try {
-    const res = await fetch("https://shark-app-qka6s.ondigitalocean.app/categories");
+    const res = await fetch(`${BASE_URL}/categories`);
     const data: string[] = await res.json();
     return data;
   } catch (err) {

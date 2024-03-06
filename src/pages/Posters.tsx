@@ -27,6 +27,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import useUrlParameters from "@/hooks/useUrlParameters";
 import { useFilteredData } from "@/hooks/useFilteredData";
+import { POSTER_PER_PAGINATION } from "@/config";
 const BREADCRUMBS = [
   { id: 1, name: "Дом", href: "/" },
   { id: 2, name: "Продукты", href: "/products" },
@@ -36,7 +37,6 @@ const Posters = () => {
   [];
   const [sortBy, setSortBy] = useState<string>("");
 
-  const POSTER_PER_PAGINATION = 24;
 
   const navigate = useNavigate();
 
@@ -48,7 +48,6 @@ const Posters = () => {
     return data;
   }, [data]);
   const filters = useUrlParameters();
-  console.log(filters)
   const memoizedFilters = useMemo(() => {
     return Object.fromEntries(filters);
   }, [filters]);

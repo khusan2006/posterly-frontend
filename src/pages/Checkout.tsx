@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { PROMO_CODES } from "@/config";
 import { cn, formatPrice } from "@/lib/utils";
 import {
   decreaseItemQuantity,
@@ -10,7 +12,7 @@ import {
   increaseItemQuantity,
 } from "@/slices/CartSlice";
 import { Loader2, Minus, Plus, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 const Checkout = () => {
@@ -18,7 +20,14 @@ const Checkout = () => {
   const cartTotal = useSelector(getTotalCartPrice);
   const totalItems = useSelector(getTotalCartQuantity);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [discount, setDiscount] = useState<string>("");
   const dispatch = useDispatch();
+  const promoCodeRef = useRef<HTMLInputElement>(null);
+
+  const handlePromoCode = () => {
+    setDiscount(PROMO_CODES[promoCodeRef.current?.value as string]);
+  };
+
   useEffect(() => {
     setIsMounted(true);
     window.scrollTo(0, 0);
@@ -49,7 +58,7 @@ const Checkout = () => {
                   <img
                     src="/hippo-empty-cart.png"
                     loading="eager"
-                    alt="empty shopping cart hippo"
+                    alt="empty shopping cart"
                   />
                 </div>
                 <h3 className="font-semibold text-2xl">Your cart is empty</h3>
@@ -112,7 +121,9 @@ const Checkout = () => {
                               </p>
                             </div>
 
-                            <p className="mt-3 text-sm font-medium text-gray-900">
+                            <p
+                              className={`mt-3 text-sm font-medium text-gray-900`}
+                            >
                               {formatPrice(
                                 product.product.price
                                   ? product.product.price
@@ -172,17 +183,45 @@ const Checkout = () => {
                   )}
                 </p>
               </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm text-gray-600">Promo code</p>
+                <div className="flex items-center">
+                  <Input
+                    ref={promoCodeRef}
+                    className="bg-transparent w-1/2 p-0 border-0 border-b-2 rounded-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                    placeholder="enter promocode "
+                  />
+                  <Button
+                    variant={"ghost"}
+                    onClick={handlePromoCode}
+                    className="pb-0 items-end"
+                  >
+                    Check
+                  </Button>
+                </div>
+              </div>
 
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <div className="text-base font-medium text-gray-900">
                   Весь заказ
                 </div>
-                <div className="text-base font-medium text-gray-900">
-                  {isMounted ? (
-                    formatPrice(cartTotal)
-                  ) : (
-                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-                  )}
+                <div>
+                  <div
+                    className={`${
+                      discount !== "" && discount ? "line-through" : ""
+                    } text-base font-medium text-gray-900`}
+                  >
+                    {isMounted ? (
+                      formatPrice(cartTotal)
+                    ) : (
+                      <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                    )}
+                  </div>
+                  {discount !== "" && discount ? (
+                    <div className={`text-sm font-medium text-green-500`}>
+                      {formatPrice(cartTotal-(cartTotal * Number(discount)))}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>

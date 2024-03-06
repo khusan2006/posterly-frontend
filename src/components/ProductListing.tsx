@@ -33,10 +33,10 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
     if (!product.price) return;
     const data = {
       quantity: 1,
-      totalPrice: product.price,
+      totalPrice: product.price[0],
       format: "A3",
       frame: "с рамкой",
-      product: product,
+      product: {...product, price: product.price[0]},
     };
     dispatch(addItem(data));
     toast.success("плакат добавлен в корзину");

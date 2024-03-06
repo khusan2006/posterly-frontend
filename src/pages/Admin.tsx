@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import FormInput from "@/form/FormInput";
+import FormInput from "@/components/form/FormInput";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
