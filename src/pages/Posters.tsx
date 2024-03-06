@@ -23,7 +23,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-
+import {Helmet} from 'react-helmet'
 import { motion } from "framer-motion";
 import useUrlParameters from "@/hooks/useUrlParameters";
 import { useFilteredData } from "@/hooks/useFilteredData";
@@ -112,6 +112,13 @@ const Posters = () => {
 
   return (
     <MaxWidthWrapper>
+      <Helmet>
+        <title>Buy Posters Online - Posterly</title>
+        <meta
+          name="description"
+          content="Discover a wide selection of posters online at Posterly. Browse our collection and find the perfect posters for your home or office."
+        />
+      </Helmet>
       <ol className="flex items-center space-x-2 mt-6">
         {BREADCRUMBS.map((breadcrumb, i) => (
           <li key={breadcrumb.href}>
