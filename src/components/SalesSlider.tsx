@@ -32,7 +32,7 @@ const SalesSlider = () => {
   const inactiveStyles = "hidden text-gray-400";
 
   return (
-    <div className="group relative bg-zinc-100  overflow-hidden rounded-xl w-full mb-6 mt-4 h-[fit-content] sm:h-[85vh]">
+    <div className="group relative bg-zinc-100  overflow-hidden rounded-xl w-full mb-6 mt-4 h-[fit-content]  sm:h-[85vh] 2xl:h-[70vh]">
       <div className="absolute z-10 inset-0 opacity-0 group-hover:opacity-100 transition">
         <button
           onClick={(e) => {
@@ -71,7 +71,7 @@ const SalesSlider = () => {
           },
         }}
         autoplay={{
-          delay: 2000,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         onSwiper={(swiper) => setSwiper(swiper)}
