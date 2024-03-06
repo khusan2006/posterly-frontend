@@ -1,0 +1,14 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://posterly.uz/sitemap.xml
+
+Disallow: /admin
+Disallow: /cart
+Disallow: /checkout
+Disallow: /login
+Disallow: /register
+Disallow: /account
+Disallow: /admin
+Disallow: /404
+Disallow: /500
