@@ -120,6 +120,13 @@ const PrivacyPolicy = () => {
           questions, or if you would like to make a complaint, please contact us
           by e-mail at support@posterly.uz.
         </p>
+        <h3 className="text-2xl font-semibold mt-3">Ads</h3>
+        <p className="mt-2 letter tracking-wider leading-8">
+          We use Google AdSense on our website to display ads. Google AdSense
+          may use cookies to personalize the ads you see. You can view Google's
+          privacy policy regarding advertising here: Google AdSense Privacy
+          Policy.
+        </p>
       </div>
     </MaxWidthWrapper>
   );

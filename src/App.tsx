@@ -17,6 +17,7 @@ import PrivacyPolicy from "./components/policies/PrivacyPolicy";
 import TermsOfUse from "./components/policies/TermsOfUse";
 import { initGA, logPageView } from "./google-analytics";
 import LoadingPage from "./components/LoadingPage";
+import CookiePolicy from "./components/policies/CookiePolicy";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -48,6 +49,7 @@ const App = () => {
               <Route element={<ThankYouPage />} path="thank-you" />
               <Route element={<PrivacyPolicy />} path="privacy-policy" />
               <Route element={<TermsOfUse />} path="terms" />
+              <Route element={<CookiePolicy />} path="cookie-policy" />
             </Route>
           </Routes>
         </Suspense>

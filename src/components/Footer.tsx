@@ -59,7 +59,7 @@ const Footer = () => {
                 Privacy Policy
               </NavLink>
               <NavLink
-                to="#"
+                to="/cookie-policy"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
                 Cookie Policy

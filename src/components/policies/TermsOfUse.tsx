@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 
 const TermsOfUse = () => {
-    useEffect(() => {
-        scrollTo(0,0)
-    }, [])
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, []);
   return (
     <MaxWidthWrapper className="py-10">
       <div className="md:px-16">
@@ -120,7 +120,7 @@ const TermsOfUse = () => {
           Posterly.uz may revise these Terms of Use for its website at any time
           without notice. By using this website you are agreeing to be bound by
           the then current version of these Terms of Use.
-        </p>
+        </p>    
       </div>
     </MaxWidthWrapper>
   );
