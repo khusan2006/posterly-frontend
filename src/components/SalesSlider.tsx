@@ -7,7 +7,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const urls = ["/banner.png", "/webpost2.png", "/webpost3.png"];
+const urls = ["/banner.webp", "/webpost2.webp", "/webpost3.webp"];
 
 const SalesSlider = () => {
   const [swiper, setSwiper] = useState<null | SwiperType>(null);

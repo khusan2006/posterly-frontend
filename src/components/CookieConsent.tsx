@@ -14,7 +14,7 @@ const CookieConsent = () => {
 
   const rejectCookies = () => {
     Cookies.set("cookiesAccepted", "false");
-    setAccepted(false);
+    setAccepted(true);
   };
   if (accepted || Cookies.get('cookiesAccepted')) {
     return null; // If cookies are accepted, don't show the consent warning

@@ -26,6 +26,9 @@ const Checkout = () => {
 
   const handlePromoCode = () => {
     setDiscount(PROMO_CODES[promoCodeRef.current?.value as string]);
+    if (promoCodeRef.current) {
+      promoCodeRef.current.disabled = true;
+    }
   };
 
   useEffect(() => {
@@ -219,7 +222,7 @@ const Checkout = () => {
                   </div>
                   {discount !== "" && discount ? (
                     <div className={`text-sm font-medium text-green-500`}>
-                      {formatPrice(cartTotal-(cartTotal * Number(discount)))}
+                      {formatPrice(cartTotal - cartTotal * Number(discount))}
                     </div>
                   ) : null}
                 </div>
