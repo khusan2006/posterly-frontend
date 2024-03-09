@@ -1,9 +1,8 @@
-import { getPostersByCategory } from "@/api/posters";
+import { getPosters } from "@/api/posters";
 import ProductListing, { ProductPlaceholder } from "./ProductListing";
 import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
-import { posterData } from "@/lib/types";
 interface ProductReelProps {
   title: string;
   subtitle?: string;
@@ -12,18 +11,18 @@ interface ProductReelProps {
 
 const ProductReel = (props: ProductReelProps) => {
   const { title, subtitle, href } = props;
-
   const { data } = useQuery({
-    queryKey: ["posterByCategory", title],
-    queryFn: () => {
-      if(title === 'brand new') {
-        return getPostersByCategory('new')
-      }else{
-        return getPostersByCategory(title)
-      }
-    }
+    queryKey: ["posters"],
+    queryFn: () => getPosters(),
   });
-  if (!data) return <ProductReelPlaceholder />;
+  // filter data based on title
+  let manipulatedPosters = data?.filter((poster) =>
+    poster.categories?.includes(title)
+  );
+  if (title === "brand new") {
+    manipulatedPosters = data;
+  }
+  if (!manipulatedPosters) return <ProductReelPlaceholder />;
   return (
     <section className="py-12">
       <div className="md:flex md:items-center md:justify-between mb-4">
@@ -52,7 +51,7 @@ const ProductReel = (props: ProductReelProps) => {
       <div className="relative">
         <div className="mt-6 flex items-center w-full">
           <div className="w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8">
-            {data.map((product: posterData, i: number) => (
+            {manipulatedPosters.slice(0, 4).map((product, i) => (
               <ProductListing
                 key={`product-${i}`}
                 product={product}
