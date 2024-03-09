@@ -70,6 +70,20 @@ export const getPoster = async (id: string) => {
   }
 };
 
+export const getPostersByCategory = async(category?: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posters/main/${category}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch poster");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 export const createCustomPoster = async (data: {name: string, images: string[], price: string}) => {
   try {
     const response = await fetch(`${BASE_URL}/custom`, {

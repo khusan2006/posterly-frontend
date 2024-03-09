@@ -4,7 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 const useSearchResults = (searchText: string) => {
   const { data: posters } = useQuery({
     queryKey: ["posters"],
-    queryFn: () => getPosters(),
+    queryFn: () => {
+      if(!searchText) {
+        return []
+      }else{
+        return getPosters()
+      }
+    },
   });
   if (searchText === "") return [];
   const data = posters?.filter((item) => {

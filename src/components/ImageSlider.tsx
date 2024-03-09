@@ -85,7 +85,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
           <SwiperSlide key={i} className="-z-10 relative h-full w-full">
             <img
               loading="eager"
-              className="-z-10 h-full w-full object-cover object-center"
+              className="-z-10 h-full w-full object-cover object-center aspect-auto"
               src={url}
               alt="Product image"
             />

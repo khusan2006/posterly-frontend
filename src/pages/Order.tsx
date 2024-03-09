@@ -73,7 +73,7 @@ const Order = () => {
           </Form>
         </div>
         <div className="flex-1 hidden md:block">
-          <img src="/order-page.png" alt="cart with full of items" />
+          <img src="/order-page.webp" alt="cart with full of items" />
         </div>
       </MaxWidthWrapper>
     </section>

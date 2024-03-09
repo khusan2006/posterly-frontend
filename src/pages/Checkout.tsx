@@ -59,7 +59,7 @@ const Checkout = () => {
                   className="relative mb-4 h-40 w-40 text-muted-foreground"
                 >
                   <img
-                    src="/hippo-empty-cart.png"
+                    src="/empty-cart.webp"
                     loading="eager"
                     alt="empty shopping cart"
                   />
