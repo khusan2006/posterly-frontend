@@ -85,7 +85,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           transition={{duration: 0.5}}
         >
           <div className="flex flex-col w-full">
-            <div className="md:h-[50vh]">
+            <div className="h-[28vh] md:h-[50vh]">
               <ImageSlider urls={product.images as string[]} />
             </div>
             <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-0 md:items-center mt-4">
@@ -147,7 +147,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
 export const ProductPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">
-      <div className="relative bg-zinc-100 md:h-[50vh] w-full overflow-hidden rounded-xl">
+      <div className="relative bg-zinc-100 h-[28vh] md:h-[50vh] w-full overflow-hidden rounded-xl">
         <Skeleton className="h-full w-full" />
       </div>
       <Skeleton className="mt-4 w-2/3 h-4 rounded-lg" />
