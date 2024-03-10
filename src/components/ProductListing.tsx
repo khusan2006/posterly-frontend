@@ -147,7 +147,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
 export const ProductPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">
-      <div className="relative bg-zinc-100 md:h-[50vh]F w-full overflow-hidden rounded-xl">
+      <div className="relative bg-zinc-100 md:h-[50vh] w-full overflow-hidden rounded-xl">
         <Skeleton className="h-full w-full" />
       </div>
       <Skeleton className="mt-4 w-2/3 h-4 rounded-lg" />
