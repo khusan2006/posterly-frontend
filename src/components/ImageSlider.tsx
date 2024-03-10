@@ -1,5 +1,3 @@
-"use client";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -84,8 +82,8 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
         {urls.map((url, i) => (
           <SwiperSlide key={i} className="-z-10 relative h-full w-full">
             <img
-              loading="eager"
-              className="-z-10 h-full w-full object-cover object-center aspect-auto"
+              loading="lazy"
+              className="-z-10 lazy-image h-full w-full object-cover object-center aspect-auto"
               src={url}
               alt="Product image"
             />

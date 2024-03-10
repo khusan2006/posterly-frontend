@@ -77,6 +77,21 @@ html {
   animation: fade 1.5s infinite;
 }
 
+.lazy-image {
+
+  animation: lazyLoad 1.5s ease-in;
+}
+@keyframes lazyLoad {
+  0% {
+    filter: blur(100px);
+  }
+  50% {
+    filter: blur(50px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
 @keyframes fade {
   0% {
     opacity: 0.5;
