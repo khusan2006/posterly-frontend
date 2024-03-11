@@ -26,6 +26,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+ 
   const handleCartClick = (
     e: MouseEvent<HTMLButtonElement>,
     product: posterData

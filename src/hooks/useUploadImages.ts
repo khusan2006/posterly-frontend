@@ -10,7 +10,11 @@ const useUploadImages = (images: File[]) => {
     setImageUrls([]);
     const uploadImages = async (image: File) => {
       const imageRef = ref(storage, image?.name);
-      await uploadBytes(imageRef, image);
+      const metadata = {
+        contentType: image.type,
+        cacheControl: 'public, max-age=3600', // Cache images for 1 hour (3600 seconds)
+      };
+      await uploadBytes(imageRef, image, metadata);
       const url = await getDownloadURL(imageRef);
       setImageUrls((prev) => [...prev, url]);
       setIsImageUploading(false);
