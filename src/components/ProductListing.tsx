@@ -68,7 +68,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 1000);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [index]);
