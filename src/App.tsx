@@ -10,14 +10,14 @@ const Admin = lazy(() => import("./pages/Admin"));
 const CustomPoster = lazy(() => import("./pages/CustomPoster"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const AdminCreatePoster = lazy(() => import("./pages/AdminCreatePoster"));
-import Order from "./pages/Order";
-import ThankYouPage from "./pages/ThankYou";
-import CookieConsent from "./components/CookieConsent";
-import PrivacyPolicy from "./components/policies/PrivacyPolicy";
+const Order = lazy(() => import("./pages/Order"));
+const ThankYouPage = lazy(() => import("./pages/ThankYou"));
+const CookieConsent = lazy(() => import("./components/CookieConsent"));
+const PrivacyPolicy = lazy(() => import("./components/policies/PrivacyPolicy"));
+const CookiePolicy = lazy(() => import("./components/policies/CookiePolicy"));
 import TermsOfUse from "./components/policies/TermsOfUse";
 import { initGA, logPageView } from "./google-analytics";
 import LoadingPage from "./components/LoadingPage";
-import CookiePolicy from "./components/policies/CookiePolicy";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {

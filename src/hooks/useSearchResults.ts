@@ -5,6 +5,7 @@ const useSearchResults = (searchText: string) => {
   const { data: posters } = useQuery({
     queryKey: ["posters"],
     queryFn: () =>  getPosters(),
+    enabled: searchText !== ''
   });
   if (searchText === "") return [];
   const data = posters?.filter((item) => {

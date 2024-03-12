@@ -7,7 +7,11 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const urls = ["/banner.webp", "/webpost2.webp", "/webpost3.webp"];
+const urls = [
+  "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/banner.webp?alt=media&token=295625f2-4f6b-4f1e-b29e-9af2b4c632b3",
+  "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost2.webp?alt=media&token=46960942-8f6e-432e-ae66-4628324d46a1",
+  "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost3.webp?alt=media&token=46a0854b-4ca5-411c-8f7e-e6fc287d18ad",
+];
 
 const SalesSlider = () => {
   const [swiper, setSwiper] = useState<null | SwiperType>(null);
@@ -83,7 +87,7 @@ const SalesSlider = () => {
         {urls.map((url, i) => (
           <SwiperSlide key={i} className="-z-10  h-full w-full relative">
             <img
-              loading="eager"
+              loading="lazy"
               className="-z-10 h-full w-full "
               src={url}
               alt="Product image"

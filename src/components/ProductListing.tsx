@@ -26,7 +26,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
+
   const handleCartClick = (
     e: MouseEvent<HTMLButtonElement>,
     product: posterData
@@ -68,7 +68,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 200);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [index]);
@@ -79,64 +79,66 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
     return (
       <AnimatePresence>
         <motion.div
-        key={product.name}
+          key={product.name}
           layout
           className={cn("h-full w-full cursor-pointer group/main")}
           onClick={handleNavigation}
-          transition={{duration: 0.5}}
+          transition={{ duration: 0.5 }}
         >
           <div className="flex flex-col w-full">
             <div className="h-[28vh] md:h-[50vh]">
               <ImageSlider urls={product.images as string[]} />
             </div>
-            <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-0 md:items-center mt-4">
-              <h3 className=" font-medium text-sm md:text-base text-gray-700 flex line-clamp-1">
-                {truncate(product.name as string, 17)}
-              </h3>
+            <div className="h-[8rem] flex flex-col justify-around">
+              <div className="flex md:flex-row flex-col justify-between gap-2 md:gap-0 md:items-center mt-4">
+                <h3 className=" font-medium text-sm md:text-base text-gray-700 flex line-clamp-1">
+                  {truncate(product.name as string, 17)}
+                </h3>
 
-              <p className="font-medium text-sm md:text-base text-gray-900">
-                {formatPrice(product.price ? product?.price[0] : "")}
-              </p>
-            </div>
-            <div className="flex gap-2 mt-4">
-              {product.categories?.slice(0, 3).map((category) => (
-                <span className="bg-orange-100 text-orange-900 px-1.5 py-1 rounded-xl text-sm">
-                  {category}
-                </span>
-              ))}
-            </div>
-            <div className="flex justify-between items-center mt-3">
-              <h3 className=" font-medium text-base text-gray-700 flex">
-                продано: {product.sold}
-              </h3>
+                <p className="font-medium text-sm md:text-base text-gray-900">
+                  {formatPrice(product.price ? product?.price[0] : "")}
+                </p>
+              </div>
+              <div className="flex gap-2 mt-4">
+                {product.categories?.slice(0, 3).map((category) => (
+                  <span className="bg-orange-100 text-orange-900 px-1.5 py-1 rounded-xl text-sm">
+                    {category}
+                  </span>
+                ))}
+              </div>
+              <div className="flex justify-between items-center mt-3">
+                <h3 className=" font-medium text-base text-gray-700 flex">
+                  продано: {product.sold}
+                </h3>
 
-              {productQuantityinCart > 0 ? (
-                <div className="flex items-center gap-1">
-                  <Minus
-                    className="cursor-pointer"
-                    size={16}
-                    onClick={(e) => {
-                      handleItemQuantity(e, "decrease");
-                    }}
-                  />
-                  {productQuantityinCart}
-                  <Plus
-                    className="cursor-pointer"
-                    size={16}
-                    onClick={(e) => handleItemQuantity(e, "increase")}
-                  />
-                </div>
-              ) : (
-                <button
-                  onClick={(e) => handleCartClick(e, product)}
-                  className="font-medium text-base text-gray-900"
-                >
-                  <ShoppingCart
-                    aria-hidden="true"
-                    className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                  />
-                </button>
-              )}
+                {productQuantityinCart > 0 ? (
+                  <div className="flex items-center gap-1">
+                    <Minus
+                      className="cursor-pointer"
+                      size={16}
+                      onClick={(e) => {
+                        handleItemQuantity(e, "decrease");
+                      }}
+                    />
+                    {productQuantityinCart}
+                    <Plus
+                      className="cursor-pointer"
+                      size={16}
+                      onClick={(e) => handleItemQuantity(e, "increase")}
+                    />
+                  </div>
+                ) : (
+                  <button
+                    onClick={(e) => handleCartClick(e, product)}
+                    className="font-medium text-base text-gray-900"
+                  >
+                    <ShoppingCart
+                      aria-hidden="true"
+                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                    />
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -149,11 +151,13 @@ export const ProductPlaceholder = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="relative bg-zinc-100 h-[28vh] md:h-[50vh] w-full overflow-hidden rounded-xl">
-        <Skeleton className="h-full w-full" />
+        <Skeleton className=" h-full w-full" />
       </div>
-      <Skeleton className="mt-4 w-2/3 h-4 rounded-lg" />
-      <Skeleton className="mt-2 w-16 h-4 rounded-lg" />
-      <Skeleton className="mt-2 w-12 h-4 rounded-lg" />
+      <div className="h-[8rem] flex flex-col justify-around">
+        <Skeleton className=" mt-4 w-2/3 h-4 rounded-lg" />
+        <Skeleton className=" mt-4 w-20 h-6 rounded-lg" />
+        <Skeleton className=" mt-3 w-12 h-4 rounded-lg" />
+      </div>
     </div>
   );
 };
