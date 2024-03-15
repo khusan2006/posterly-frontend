@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ReactNode } from "react";
 const urls = [
   "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/banner.webp?alt=media&token=295625f2-4f6b-4f1e-b29e-9af2b4c632b3",
   "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost2.webp?alt=media&token=46960942-8f6e-432e-ae66-4628324d46a1",
@@ -64,6 +65,12 @@ const SalesSlider = () => {
     accessibility: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    appendDots: (dots: ReactNode) => (
+      <ul style={{ margin: "0px", position: "absolute", bottom: "3%" }}>
+        {" "}
+        {dots}{" "}
+      </ul>
+    ),
   };
 
   return (
