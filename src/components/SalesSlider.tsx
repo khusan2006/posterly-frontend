@@ -3,9 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ReactNode } from "react";
 const urls = [
-  "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/banner.webp?alt=media&token=295625f2-4f6b-4f1e-b29e-9af2b4c632b3",
-  "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost2.webp?alt=media&token=46960942-8f6e-432e-ae66-4628324d46a1",
-  "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost3.webp?alt=media&token=46a0854b-4ca5-411c-8f7e-e6fc287d18ad",
+  '/banner.webp',
+  '/webpost2.webp',
+  '/webpost3.webp'
 ];
 
 function SampleNextArrow(props: {
@@ -80,7 +80,7 @@ const SalesSlider = () => {
       className="group relative bg-zinc-100  rounded-xl w-full mb-6 mt-4 h-[fit-content] overflow-hidden md:h-[90vh]   2xl:h-[70vh]"
     >
       {urls.map((item) => (
-        <img src={item} alt="carousel image" fetchpriority="high" />
+        <img src={item} alt="carousel image" />
       ))}
     </Slider>
     // </div>

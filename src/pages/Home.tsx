@@ -31,6 +31,7 @@ export default function Home() {
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: () => getCategories(),
+     
   });
 
   useEffect(() => {
