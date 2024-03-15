@@ -1,101 +1,82 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import type SwiperType from "swiper";
-import { useEffect, useState } from "react";
-import { Pagination, Autoplay } from "swiper/modules";
-import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const urls = [
   "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/banner.webp?alt=media&token=295625f2-4f6b-4f1e-b29e-9af2b4c632b3",
   "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost2.webp?alt=media&token=46960942-8f6e-432e-ae66-4628324d46a1",
   "https://firebasestorage.googleapis.com/v0/b/poster-90252.appspot.com/o/webpost3.webp?alt=media&token=46a0854b-4ca5-411c-8f7e-e6fc287d18ad",
 ];
 
+function SampleNextArrow(props: {
+  className?: string;
+  style?: { [prop: string]: string };
+  onClick?: () => void;
+}) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        position: "absolute",
+        top: "50%",
+        right: "2%",
+        zIndex: "1000",
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props: {
+  className?: string;
+  style?: { [prop: string]: string };
+  onClick?: () => void;
+}) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        position: "absolute",
+        top: "50%",
+        left: "2%",
+        zIndex: "1000",
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
 const SalesSlider = () => {
-  const [swiper, setSwiper] = useState<null | SwiperType>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [slideConfig, setSlideConfig] = useState({
-    isBeginning: true,
-    isEnd: activeIndex === (urls.length ?? 0) - 1,
-  });
-
-  useEffect(() => {
-    swiper?.on("slideChange", ({ activeIndex }) => {
-      setActiveIndex(activeIndex);
-      setSlideConfig({
-        isBeginning: activeIndex === 0,
-        isEnd: activeIndex === (urls.length ?? 0) - 1,
-      });
-    });
-  }, [swiper]);
-
-  const activeStyles =
-    "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square h-8 w-8 z-50 place-items-center rounded-full border-2 bg-white border-zinc-300";
-  const inactiveStyles = "hidden text-gray-400";
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    swipeToSlide: true,
+    accessibility: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
 
   return (
-    <div className="group relative bg-zinc-100  overflow-hidden rounded-xl w-full mb-6 mt-4 h-[fit-content]  sm:h-[85vh] 2xl:h-[70vh]">
-      <div className="absolute z-10 inset-0 opacity-0 group-hover:opacity-100 transition">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            swiper?.slideNext();
-          }}
-          className={cn(activeStyles, "right-3 transition", {
-            [inactiveStyles]: slideConfig.isEnd,
-            "hover:bg-primary-300 text-primary-800 opacity-100":
-              !slideConfig.isEnd,
-          })}
-          aria-label="next image"
-        >
-          <ChevronRight className="h-4 w-4 text-zinc-700" />{" "}
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            swiper?.slidePrev();
-          }}
-          className={cn(activeStyles, "left-3 transition", {
-            [inactiveStyles]: slideConfig.isBeginning,
-            "hover:bg-primary-300 text-primary-800 opacity-100":
-              !slideConfig.isBeginning,
-          })}
-          aria-label="previous image"
-        >
-          <ChevronLeft className="h-4 w-4 text-zinc-700" />{" "}
-        </button>
-      </div>
-
-      <Swiper
-        pagination={{
-          renderBullet: (_, className) => {
-            return `<span class="rounded-full transition ${className}"></span>`;
-          },
-        }}
-        autoplay={{
-          delay: 3500,
-          disableOnInteraction: false,
-        }}
-        onSwiper={(swiper) => setSwiper(swiper)}
-        spaceBetween={50}
-        modules={[Pagination, Autoplay]}
-        slidesPerView={1}
-        className="h-full w-full"
-      >
-        {urls.map((url, i) => (
-          <SwiperSlide key={i} className="-z-10  h-full w-full relative">
-            <img
-              loading="lazy"
-              className="-z-10 h-full w-full "
-              src={url}
-              alt="Product image"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    // <div className="group relative bg-zinc-100  overflow-hidden rounded-xl w-full mb-6 mt-4 h-[fit-content]  sm:h-[85vh] 2xl:h-[70vh]">
+    <Slider
+      {...settings}
+      className="group relative bg-zinc-100  rounded-xl w-full mb-6 mt-4 h-[fit-content] overflow-hidden md:h-[90vh]   2xl:h-[70vh]"
+    >
+      {urls.map((item) => (
+        <img src={item} alt="carousel image" />
+      ))}
+    </Slider>
+    // </div>
   );
 };
 

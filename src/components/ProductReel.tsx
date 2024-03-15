@@ -14,7 +14,7 @@ interface ProductReelProps {
 const ProductReel = (props: ProductReelProps) => {
   const { title, subtitle, href } = props;
   const { ref, inView } = useInView({
-    threshold: 0.8,
+    threshold: 0.5,
   });
   const { data } = useQuery({
     queryKey: ["posterByCategory", title],

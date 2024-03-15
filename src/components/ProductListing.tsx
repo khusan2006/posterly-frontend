@@ -86,7 +86,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           transition={{ duration: 0.5 }}
         >
           <div className="flex flex-col w-full">
-            <div className="h-[28vh] md:h-[50vh]">
+            <div className="h-[15rem] md:h-[50vh]">
               <ImageSlider urls={product.images as string[]} />
             </div>
             <div className="h-[8rem] flex flex-col justify-around">
