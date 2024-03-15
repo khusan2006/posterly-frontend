@@ -80,7 +80,7 @@ const SalesSlider = () => {
       className="group relative bg-zinc-100  rounded-xl w-full mb-6 mt-4 h-[fit-content] overflow-hidden md:h-[90vh]   2xl:h-[70vh]"
     >
       {urls.map((item) => (
-        <img src={item} alt="carousel image" />
+        <img src={item} alt="carousel image" fetchpriority="high" />
       ))}
     </Slider>
     // </div>
