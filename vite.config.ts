@@ -10,15 +10,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-
-  build: {
-    minify: true,
-    sourcemap: false,
-    outDir: "dist",
-    assetsDir: ".",
-    cssCodeSplit: true,
-    rollupOptions: {
-      external: ["react", "react-dom"],
-    },
-  },
 });
