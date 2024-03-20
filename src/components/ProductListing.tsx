@@ -3,7 +3,7 @@ import { Skeleton } from "./ui/skeleton";
 import { cn, formatPrice, truncate } from "@/lib/utils";
 import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
-import { Minus, Plus, ShoppingCart } from "lucide-react";
+import { Frame, Image, Minus, Plus, ShoppingCart } from "lucide-react";
 import { posterData } from "@/lib/types";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,6 +21,9 @@ interface ProductListingProps {
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [format, setFormat] = useState("A3");
+  const [frame, setFrame] = useState("с рамкой");
+  const [currentPrice, setCurrentPrice] = useState(0);
   const productQuantityinCart = useSelector(
     getCurrentQuantityById(product?._id as string)
   );
@@ -35,10 +38,10 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
     if (!product.price) return;
     const data = {
       quantity: 1,
-      totalPrice: product.price[0],
-      format: "A3",
-      frame: "с рамкой",
-      product: { ...product, price: product.price[0] },
+      totalPrice: product.price[currentPrice],
+      format: format,
+      frame: frame,
+      product: { ...product, price: product.price[currentPrice] },
     };
     dispatch(addItem(data));
     toast.success("плакат добавлен в корзину");
@@ -53,9 +56,9 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
     e.stopPropagation();
     const item = {
       quantity: 1,
-      totalPrice: product?.price,
-      format: "A3",
-      frame: "с рамкой",
+      totalPrice: product?.price[currentPrice],
+      format: format,
+      frame: frame,
       product: product,
     };
     if (type === "decrease") {
@@ -72,6 +75,18 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
 
     return () => clearTimeout(timer);
   }, [index]);
+
+  useEffect(() => {
+    if (format === "A4" && frame === "без рамки") {
+      setCurrentPrice(3);
+    } else if (format === "A4" && frame === "с рамкой") {
+      setCurrentPrice(2);
+    } else if (format === "A3" && frame === "с рамкой") {
+      setCurrentPrice(0);
+    } else if (format === "A3" && frame === "без рамки") {
+      setCurrentPrice(1);
+    }
+  }, [format, frame]);
 
   if (!product || !isVisible) return <ProductPlaceholder />;
 
@@ -96,15 +111,92 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
                 </h3>
 
                 <p className="font-medium text-sm md:text-base text-gray-900">
-                  {formatPrice(product.price ? product?.price[0] : "")}
+                  {formatPrice(
+                    product.price ? product?.price[currentPrice] : ""
+                  )}
                 </p>
               </div>
-              <div className="flex gap-2 mt-4">
+              {/* <div className="flex gap-2 mt-4">
                 {product.categories?.slice(0, 3).map((category) => (
                   <span className="bg-orange-100 text-orange-900 px-1.5 py-1 rounded-xl text-sm">
                     {category}
                   </span>
                 ))}
+              </div> */}
+              <div className="flex mt-4 items-center justify-between">
+                <div className="flex gap-3 text-sm">
+                  <button
+                    type="button"
+                    disabled={productQuantityinCart > 0}
+                    className={`${
+                      format === "A3"
+                        ? "text-orange-500 border-b-[1.5px] border-orange-500"
+                        : ""
+                    } ${
+                      productQuantityinCart > 0
+                        ? "text-gray-500 border-none cursor-not-allowed"
+                        : ""
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFormat("A3");
+                    }}
+                  >
+                    A3
+                  </button>
+                  <button
+                    type="button"
+                    disabled={productQuantityinCart > 0}
+                    className={`${
+                      format === "A4"
+                        ? "text-orange-500 border-b-[1.5px] border-orange-500"
+                        : ""
+                    } ${
+                      productQuantityinCart > 0
+                        ? "text-gray-500 border-none cursor-not-allowed"
+                        : ""
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFormat("A4");
+                    }}
+                  >
+                    A4
+                  </button>
+                </div>
+                <div className="flex gap-4 text-sm">
+                  <button type="button" disabled={productQuantityinCart > 0}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFrame("с рамкой");
+                    }}
+                  >
+                    <Frame
+                      className={`${
+                        frame == "с рамкой"
+                          ? "bg-orange-100 text-orange-900 p-1 rounded-md "
+                          : "text-gray-600 bg-gray-200 p-1 rounded-md" 
+                      } ${productQuantityinCart > 0 ? 'text-gray-600 bg-gray-200 p-1 rounded-md' : ''}`}
+                      size={"23"}
+                    />
+                  </button>
+                  <button
+                  disabled={productQuantityinCart > 0}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFrame("без рамки");
+                    }}
+                  >
+                    <Image
+                     className={`${
+                      frame == "без рамки"
+                        ? "bg-orange-100 text-orange-900 p-1 rounded-md "
+                        : "text-gray-600 bg-gray-200 p-1 rounded-md" 
+                    } ${productQuantityinCart > 0 ? 'text-gray-600 bg-gray-200 p-1 rounded-md' : ''}`}
+                      size={"23"}
+                    />
+                  </button>
+                </div>
               </div>
               <div className="flex justify-between items-center mt-3">
                 <h3 className=" font-medium text-base text-gray-700 flex">

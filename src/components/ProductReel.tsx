@@ -31,7 +31,7 @@ const ProductReel = (props: ProductReelProps) => {
       </div>
     );
   return (
-    <section className="py-12">
+    <section className="py-8 md:py-12">
       <div className="md:flex md:items-center md:justify-between mb-4">
         <div className="max-w-2xl px-4 lg:max-w-4xl lg:px-0">
           {title ? (
@@ -68,6 +68,7 @@ const ProductReel = (props: ProductReelProps) => {
           </div>
         </div>
       </div>
+      <div className="md:hidden flex mt-12 items-center justify-center text-sm font-medium text-orange-600 hover:text-orange-500">{href ? <NavLink to={href}>показать все постеров &rarr;</NavLink> : null}</div>
     </section>
   );
 };
@@ -76,12 +77,12 @@ export default ProductReel;
 
 const ProductReelPlaceholder = () => {
   return (
-    <div className="flex flex-col w-full py-12">
+    <div className="flex flex-col w-full py-8 md:py-12">
       <div className="flex justify-between items-center">
         <div className="px-4 md:px-0 md:w-[10vw] w-[8rem]">
           <Skeleton className="w-xl px-4 lg:w-3xl lg:px-0 h-10" />
         </div>
-        <div className=" w-[10vw]">
+        <div className="hidden md:block md:w-[10vw]">
           <Skeleton className="w-xl px-4 lg:w-3xl lg:px-0 h-5" />
         </div>
       </div>
@@ -90,6 +91,9 @@ const ProductReelPlaceholder = () => {
         <ProductPlaceholder />
         <ProductPlaceholder />
         <ProductPlaceholder />
+      </div>
+      <div className="md:hidden flex mt-12 items-center justify-center">
+          <Skeleton className="w-10 px-4 lg:w-3xl lg:px-0 h-5" />
       </div>
     </div>
   );

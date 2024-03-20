@@ -21,7 +21,7 @@ export function formatPrice(
     maximumFractionDigits: 0,
   }).format(numericPrice).replace(/\./, ' ');
 
-  return `${formattedPrice} UZS`;
+  return `${formattedPrice}`;
 }
 
 export function shuffleArray(array: []) {
