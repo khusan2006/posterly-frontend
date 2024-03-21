@@ -21,8 +21,8 @@ interface ProductListingProps {
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [format, setFormat] = useState("A3");
-  const [frame, setFrame] = useState("с рамкой");
+  const [format, setFormat] = useState("A4");
+  const [frame, setFrame] = useState("без рамки");
   const [currentPrice, setCurrentPrice] = useState(0);
   const productQuantityinCart = useSelector(
     getCurrentQuantityById(product?._id as string)
@@ -129,25 +129,6 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
                     type="button"
                     disabled={productQuantityinCart > 0}
                     className={`${
-                      format === "A3"
-                        ? "text-orange-500 border-b-[1.5px] border-orange-500"
-                        : ""
-                    } ${
-                      productQuantityinCart > 0
-                        ? "text-gray-500 border-none cursor-not-allowed"
-                        : ""
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFormat("A3");
-                    }}
-                  >
-                    A3
-                  </button>
-                  <button
-                    type="button"
-                    disabled={productQuantityinCart > 0}
-                    className={`${
                       format === "A4"
                         ? "text-orange-500 border-b-[1.5px] border-orange-500"
                         : ""
@@ -163,9 +144,50 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
                   >
                     A4
                   </button>
+                  <button
+                    type="button"
+                    disabled={productQuantityinCart > 0}
+                    className={`${
+                      format === "A3"
+                        ? "text-orange-500 border-b-[1.5px] border-orange-500"
+                        : ""
+                    } ${
+                      productQuantityinCart > 0
+                        ? "text-gray-500 border-none cursor-not-allowed"
+                        : ""
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFormat("A3");
+                    }}
+                  >
+                    A3
+                  </button>
                 </div>
                 <div className="flex gap-4 text-sm">
-                  <button type="button" disabled={productQuantityinCart > 0}
+                <button
+                    disabled={productQuantityinCart > 0}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFrame("без рамки");
+                    }}
+                  >
+                    <Image
+                      className={`${
+                        frame == "без рамки"
+                          ? "bg-orange-100 text-orange-900 p-1 rounded-md "
+                          : "text-gray-600 bg-gray-200 p-1 rounded-md"
+                      } ${
+                        productQuantityinCart > 0
+                          ? "text-gray-600 bg-gray-200 p-1 rounded-md"
+                          : ""
+                      }`}
+                      size={"23"}
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={productQuantityinCart > 0}
                     onClick={(e) => {
                       e.stopPropagation();
                       setFrame("с рамкой");
@@ -175,27 +197,16 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
                       className={`${
                         frame == "с рамкой"
                           ? "bg-orange-100 text-orange-900 p-1 rounded-md "
-                          : "text-gray-600 bg-gray-200 p-1 rounded-md" 
-                      } ${productQuantityinCart > 0 ? 'text-gray-600 bg-gray-200 p-1 rounded-md' : ''}`}
+                          : "text-gray-600 bg-gray-200 p-1 rounded-md"
+                      } ${
+                        productQuantityinCart > 0
+                          ? "text-gray-600 bg-gray-200 p-1 rounded-md"
+                          : ""
+                      }`}
                       size={"23"}
                     />
                   </button>
-                  <button
-                  disabled={productQuantityinCart > 0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFrame("без рамки");
-                    }}
-                  >
-                    <Image
-                     className={`${
-                      frame == "без рамки"
-                        ? "bg-orange-100 text-orange-900 p-1 rounded-md "
-                        : "text-gray-600 bg-gray-200 p-1 rounded-md" 
-                    } ${productQuantityinCart > 0 ? 'text-gray-600 bg-gray-200 p-1 rounded-md' : ''}`}
-                      size={"23"}
-                    />
-                  </button>
+               
                 </div>
               </div>
               <div className="flex justify-between items-center mt-3">
