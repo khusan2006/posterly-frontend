@@ -47,8 +47,8 @@ export function useFilteredData(
         if (typeof priceRange === "string") {
           const [minPrice, maxPrice] = priceRange.split(",");
           if (
-            Number(item.price) > Number(minPrice) &&
-            Number(item.price) < Number(maxPrice)
+            Number(item.price[3]) > Number(`${minPrice}000`) &&
+            Number(item.price[3]) < Number(`${maxPrice}000`)
           ) {
             return item;
           }

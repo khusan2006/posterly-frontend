@@ -10,7 +10,7 @@ import { Slider } from "../ui/slider";
 import { useState } from "react";
 
 const FormSlider = ({ form, name, label }: FormSliderProps) => {
-  const [values, setValues] = useState([0,300])  
+  const [values, setValues] = useState([0,150])  
   return (
     <FormField
       control={form?.control}
@@ -24,7 +24,7 @@ const FormSlider = ({ form, name, label }: FormSliderProps) => {
           <FormControl>
             <Slider
               defaultValue={values}
-              max={300}
+              max={150}
               step={1}
               onValueChange={(newValues) => {
                 setValues(newValues)
@@ -34,7 +34,7 @@ const FormSlider = ({ form, name, label }: FormSliderProps) => {
             />
           </FormControl>
           <div className="pt-4">
-            Selected Range: ${values[0]} - ${values[1]}
+            Selected Range: {values[0]} тыс - {values[1]} тыс
           </div>
           <FormMessage />
         </FormItem>
