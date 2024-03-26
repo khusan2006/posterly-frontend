@@ -50,3 +50,31 @@ export function truncate(name: string, maxLength: number) {
   }
   return name;
 }
+
+export const sendTelegramMessage = async () => {
+  const token = '6571950431:AAGYUGmaARM0qU0Y8ymUuU04xLCzIk89p90'; // Replace with your bot token
+  const message = 'new order is received'; // Replace with your message
+  const chatIds = ['1086434993', '1569925076']; // Replace with your chat IDs
+
+  try {
+    // Send message to each chat ID
+    await Promise.all(chatIds.map(async (chatId) => {
+      await fetch(
+        `https://api.telegram.org/bot${token}/sendMessage`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+          }),
+        }
+      );
+    }));
+    console.log('Message sent successfully to all users!');
+  } catch (error) {
+    console.error('Error sending message:', error);
+  }
+};

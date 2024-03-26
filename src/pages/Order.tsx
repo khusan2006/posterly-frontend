@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { FieldValues, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { sendTelegramMessage } from "@/lib/utils";
 
 const Order = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const Order = () => {
     })
     mutate(orderData);
     form.reset();
+    sendTelegramMessage()
     dispatch(clearCart());
     showNotification();
   };
