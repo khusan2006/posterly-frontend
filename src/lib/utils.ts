@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { CartData } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -19,7 +20,9 @@ export function formatPrice(
     style: "decimal",
     notation,
     maximumFractionDigits: 0,
-  }).format(numericPrice).replace(/\./, ' ');
+  })
+    .format(numericPrice)
+    .replace(/\./, " ");
 
   return `${formattedPrice}`;
 }
@@ -51,30 +54,40 @@ export function truncate(name: string, maxLength: number) {
   return name;
 }
 
-export const sendTelegramMessage = async () => {
-  const token = '6571950431:AAGYUGmaARM0qU0Y8ymUuU04xLCzIk89p90'; // Replace with your bot token
-  const message = 'new order is received'; // Replace with your message
-  const chatIds = ['1086434993', '1569925076']; // Replace with your chat IDs
-
-  try {
-    // Send message to each chat ID
-    await Promise.all(chatIds.map(async (chatId) => {
-      await fetch(
-        `https://api.telegram.org/bot${token}/sendMessage`,
+type OrderType = {
+  posters: CartData[];
+  customerName: string;
+  customerPhone: string;
+};
+export const sendTelegramMessage = async (orderData: OrderType) => {
+  orderData.posters.map(async (order) => {
+    if (!order.product.images) return;
+    const token = "6571950431:AAGYUGmaARM0qU0Y8ymUuU04xLCzIk89p90"; // Replace with your bot token
+    const message = `
+     🔥New Order is received🔥\n
+    👤Customer name: ${orderData.customerName}\n
+    📞Phone number: ${orderData.customerPhone}\n
+    📝Quantity: ${order.quantity}\n
+    🖼 With frame: ${order.frame}\n
+    📃format: ${order.format}`; // Replace with your message
+    const chatId = "-1002109040580";
+    const formData = new FormData();
+    formData.append("chat_id", chatId);
+    formData.append("photo", order?.product?.images[0]);
+    formData.append("caption", message);
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${token}/sendPhoto`,
         {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-          }),
+          method: "POST",
+          body: formData,
         }
       );
-    }));
-    console.log('Message sent successfully to all users!');
-  } catch (error) {
-    console.error('Error sending message:', error);
-  }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  });
 };

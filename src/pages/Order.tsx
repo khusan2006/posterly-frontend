@@ -42,7 +42,7 @@ const Order = () => {
     })
     mutate(orderData);
     form.reset();
-    sendTelegramMessage()
+    sendTelegramMessage(orderData)
     dispatch(clearCart());
     showNotification();
   };
