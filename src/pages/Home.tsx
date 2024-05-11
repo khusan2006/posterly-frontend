@@ -61,7 +61,7 @@ export default function Home() {
           ? bearbrickcategories?.map((category) => (
               <ProductReelBearBrick
                 title={category}
-                href={`/products?category=${category}`}
+                href={`/bearbricks?category=${category}`}
               />
             ))
           : Array.from({ length: 5 }, () => <ProductReel title="" href="/" />)}

@@ -21,8 +21,20 @@ interface ProductListingProps {
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [format, setFormat] = useState("A4");
-  const [frame, setFrame] = useState("без рамки");
+  const [format, setFormat] = useState(() => {
+    if(product?.type == 'bearbrick') {
+      return 'bearbrick'
+    }else{
+      return 'A4';
+    }
+  });
+  const [frame, setFrame] = useState(() => {
+    if(product?.type == 'bearbrick') {
+      return ''
+    }else {
+      return 'без рамки';
+    } 
+  });
   const [currentPrice, setCurrentPrice] = useState(0);
   const productQuantityinCart = useSelector(
     getCurrentQuantityById(product?._id as string)

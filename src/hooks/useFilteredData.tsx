@@ -1,4 +1,4 @@
-import { posterData } from "@/lib/types";
+import {  posterData } from "@/lib/types";
 import { useMemo } from "react";
 
 export function useFilteredData(

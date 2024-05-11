@@ -1,6 +1,17 @@
 import { BASE_URL } from "@/config";
 import { BearBrickData } from "@/lib/types";
 
+
+export const getBearBricks = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/bearbricks`);
+    const data = await res.json();
+
+    return data;
+  } catch (err) {
+    throw new Error("something went wrong");
+  }
+};
 export const createBearBrick = async (data: BearBrickData) => {
     //formatting data
     const categories = data?.categories?.split(",");

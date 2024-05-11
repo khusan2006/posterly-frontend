@@ -25,6 +25,7 @@ export type posterData = {
   images: string[] ;
   sold: string;
   createdAt?: Date;
+  type?: string;
 };
 export type BearBricks = {
   _id?: string | undefined;

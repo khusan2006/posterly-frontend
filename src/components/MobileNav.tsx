@@ -17,10 +17,16 @@ const MobileNav = () => {
             <div className="flow-root">
               <SheetTrigger asChild>
                 <NavLink
+                  to="/bearbricks"
+                  className="-m-2 block p-2 font-medium text-gray-900"
+                >
+                  Беарбриcки
+                </NavLink>
+                <NavLink
                   to="/products"
                   className="-m-2 block p-2 font-medium text-gray-900"
                 >
-                  Перейти в каталог
+                  Постеры
                 </NavLink>
               </SheetTrigger>
             </div>

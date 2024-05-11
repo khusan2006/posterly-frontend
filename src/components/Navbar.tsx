@@ -73,6 +73,14 @@ const Navbar = () => {
               <div className="ml-auto flex items-center">
                 <div className="flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                 <NavLink
+                      to="/bearbricks"
+                      className={buttonVariants({
+                        variant: "ghost",
+                      })}
+                    >
+                      Беарбриcки
+                    </NavLink>
                  {user ? null : (
                     <NavLink
                       to="/products"
@@ -80,7 +88,7 @@ const Navbar = () => {
                         variant: "ghost",
                       })}
                     >
-                      Перейти в каталог
+                      Постеры
                     </NavLink>
                   )}
 

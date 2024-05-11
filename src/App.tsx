@@ -19,6 +19,7 @@ import TermsOfUse from "./components/policies/TermsOfUse";
 import { initGA, logPageView } from "./google-analytics";
 import LoadingPage from "./components/LoadingPage";
 import AdminCreateBearBrick from "./pages/AdminCreateBearBrick";
+import BearBricks from "./pages/BearBricks";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -44,6 +45,7 @@ const App = () => {
                 <Route element={<AdminOrders />} path="orders" />
               </Route>
               <Route element={<Posters />} path="products" />
+              <Route element={<BearBricks />} path="bearbricks" />
               <Route element={<Poster />} path="/product/:productId" />
               <Route element={<CustomPoster />} path="product/custom" />
               <Route element={<Checkout />} path="checkout" />

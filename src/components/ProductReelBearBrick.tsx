@@ -21,7 +21,6 @@ const ProductReel = (props: ProductReelProps) => {
     queryFn: () => getBearBricksByCategory(title === "brand new" ? "new" : title),
     enabled: inView,
   });
-  console.log(data)
   const manipulatedData: posterData[] = data;
 
   if (!manipulatedData)
@@ -49,7 +48,7 @@ const ProductReel = (props: ProductReelProps) => {
             to={href}
             className="hidden text-sm font-medium text-orange-600 hover:text-orange-500 md:block"
           >
-            Коллекция постеров
+            Коллекция беарбриcкс
             <span aria-hidden="true">&rarr;</span>
           </NavLink>
         ) : null}

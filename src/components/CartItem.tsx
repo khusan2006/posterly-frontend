@@ -14,7 +14,6 @@ const CartItem = ({ item }: { item: CartData }) => {
   const { product } = item;
   if (!product.images) return;
   const image = product.images[0];
-
   return (
     <div className="">
       <div className="flex items-start justify-between gap-4">
@@ -39,9 +38,11 @@ const CartItem = ({ item }: { item: CartData }) => {
               <span className="line-clamp-1 text-xs capitalize bg-orange-100 text-orange-900 px-1 py-0.5 rounded-mf">
                 {item.format && item.format}
               </span>
-              <span className="line-clamp-1 text-xs capitalize bg-orange-100 text-orange-900 px-1 py-0.5 rounded-mf">
-                {item.frame && item.frame}
-              </span>
+              {item.frame !== "" && (
+                <span className="line-clamp-1 text-xs capitalize bg-orange-100 text-orange-900 px-1 py-0.5 rounded-mf">
+                  {item.frame !== "" && item.frame}
+                </span>
+              )}
             </div>
 
             <div className="mt-2 text-xs text-muted-foreground">
