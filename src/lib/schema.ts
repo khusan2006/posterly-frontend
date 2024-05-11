@@ -23,6 +23,20 @@ export const PosterFormSchema = z.object({
     required_error: "please enter categoires",
   }),
 });
+export const BearBrickFormSchema = z.object({
+  name: z.string({
+    required_error: "please enter name",
+  }),
+  price: z.string({
+    required_error: "please enter price",
+  }),
+  sold: z.string({
+    required_error: "please select sold",
+  }),
+  categories: z.string({
+    required_error: "please enter categoires",
+  }),
+});
 
 export const FilterSchema = z.object({
   categories: z.string().optional(), // Array of selected categories

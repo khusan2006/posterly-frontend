@@ -6,6 +6,7 @@ export type FormInputProps = {
   label: ReactNode;
   name:
     | "name"
+    | "price" 
     | "price1"
     | "price2"
     | "price3"
@@ -24,6 +25,22 @@ export type posterData = {
   images: string[] ;
   sold: string;
   createdAt?: Date;
+};
+export type BearBricks = {
+  _id?: string | undefined;
+  name: string;
+  price: string[];
+  categories: string[];
+  images: string[] ;
+  sold: string;
+  createdAt?: Date;
+};
+export type BearBrickData = {
+  name: string;
+  price: string;
+  categories: string;
+  images: string[] ;
+  sold: string;
 };
 
 export type FormSelectProps<T> = {
@@ -53,6 +70,7 @@ export type CartData = {
   frame: string;
   format: string;
   product: CartProduct;
+  images: string[];
 };
 
 export type Order = {

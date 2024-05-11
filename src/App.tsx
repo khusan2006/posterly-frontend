@@ -18,6 +18,7 @@ const CookiePolicy = lazy(() => import("./components/policies/CookiePolicy"));
 import TermsOfUse from "./components/policies/TermsOfUse";
 import { initGA, logPageView } from "./google-analytics";
 import LoadingPage from "./components/LoadingPage";
+import AdminCreateBearBrick from "./pages/AdminCreateBearBrick";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -39,6 +40,7 @@ const App = () => {
               <Route index element={<Home />} />
               <Route element={<Admin />} path="admin">
                 <Route element={<AdminCreatePoster />} index path="posters" />
+                <Route element={<AdminCreateBearBrick />} path="bearbrick" />
                 <Route element={<AdminOrders />} path="orders" />
               </Route>
               <Route element={<Posters />} path="products" />

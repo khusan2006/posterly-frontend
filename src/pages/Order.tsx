@@ -31,6 +31,7 @@ const Order = () => {
   }
 
   const posters = useSelector(getCart);
+  console.log(posters)
   const onSubmit = async (data: FieldValues) => {
     const orderData = {
       posters: posters,

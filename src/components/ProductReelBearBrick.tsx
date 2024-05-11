@@ -1,10 +1,10 @@
-import { getPostersByCategory } from "@/api/posters";
 import ProductListing, { ProductPlaceholder } from "./ProductListing";
 import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 import { Skeleton } from "./ui/skeleton";
 import { useInView } from "react-intersection-observer";
 import { posterData } from "@/lib/types";
+import { getBearBricksByCategory } from "@/api/bearbrick";
 interface ProductReelProps {
   title: string;
   subtitle?: string;
@@ -17,11 +17,11 @@ const ProductReel = (props: ProductReelProps) => {
     threshold: 0.2,
   });
   const { data } = useQuery({
-    queryKey: ["posterByCategory", title],
-    queryFn: () => getPostersByCategory(title === "brand new" ? "new" : title),
+    queryKey: ["bearbrickByCategory", title],
+    queryFn: () => getBearBricksByCategory(title === "brand new" ? "new" : title),
     enabled: inView,
   });
-
+  console.log(data)
   const manipulatedData: posterData[] = data;
 
   if (!manipulatedData)

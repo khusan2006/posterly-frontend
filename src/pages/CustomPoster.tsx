@@ -47,6 +47,7 @@ const CustomPoster = () => {
       frame,
       format,
       product: result,
+      images: result.images
     };
     dispatch(addItem(data));
     setImageUrls([]);

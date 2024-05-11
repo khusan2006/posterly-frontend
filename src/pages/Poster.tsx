@@ -37,6 +37,7 @@ const Poster = () => {
       format: format,
       frame: frame,
       product: editedProduct,
+      images: editedProduct.images
     };
     dispatch(addItem(data));
     toast.success("плакат добавлен в корзину");

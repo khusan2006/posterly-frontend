@@ -1,11 +1,11 @@
-import { getCategories } from "@/api/categories";
+import { getBearBrickcategories, getPosterCategories } from "@/api/categories";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/ProductReel";
 import SalesSlider from "@/components/SalesSlider";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
 import { useEffect } from "react";
-
+import ProductReelBearBrick from "../components/ProductReelBearBrick";
 const perks = [
   {
     name: "Мгновенная доставка",
@@ -29,10 +29,15 @@ const perks = [
 
 export default function Home() {
   const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: () => getCategories(),
+    queryKey: ["poster-categories"],
+    queryFn: () => getPosterCategories(),
      
   });
+  const { data: bearbrickcategories } = useQuery({
+    queryKey: ["bearbrick-categories"],
+    queryFn: () => getBearBrickcategories(),
+  });
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,6 +57,15 @@ export default function Home() {
               />
             ))
           : Array.from({ length: 5 }, () => <ProductReel title="" href="/" />)}
+        {bearbrickcategories
+          ? bearbrickcategories?.map((category) => (
+              <ProductReelBearBrick
+                title={category}
+                href={`/products?category=${category}`}
+              />
+            ))
+          : Array.from({ length: 5 }, () => <ProductReel title="" href="/" />)}
+        
       </MaxWidthWrapper>
       <section className="border-t border-gray-200 bg-gray-50">
         <MaxWidthWrapper className="py-20">

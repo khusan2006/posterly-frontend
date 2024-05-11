@@ -41,6 +41,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
       totalPrice: product.price[currentPrice],
       format: format,
       frame: frame,
+      images: product.images,
       product: { ...product, price: product.price[currentPrice] },
     };
     dispatch(addItem(data));
@@ -112,7 +113,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
 
                 <p className="font-medium text-sm md:text-base text-gray-900">
                   {formatPrice(
-                    product.price ? product?.price[currentPrice] : ""
+                    product.price ? product?.price[product.price.length > 3 ? currentPrice : 0] : ""
                   )}
                 </p>
               </div>
@@ -123,92 +124,94 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
                   </span>
                 ))}
               </div> */}
-              <div className="flex mt-4 items-center justify-between">
-                <div className="flex gap-3 text-sm">
-                  <button
-                    type="button"
-                    disabled={productQuantityinCart > 0}
-                    className={`${
-                      format === "A4"
-                        ? "text-orange-500 border-b-[1.5px] border-orange-500"
-                        : ""
-                    } ${
-                      productQuantityinCart > 0
-                        ? "text-gray-500 border-none cursor-not-allowed"
-                        : ""
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFormat("A4");
-                    }}
-                  >
-                    A4
-                  </button>
-                  <button
-                    type="button"
-                    disabled={productQuantityinCart > 0}
-                    className={`${
-                      format === "A3"
-                        ? "text-orange-500 border-b-[1.5px] border-orange-500"
-                        : ""
-                    } ${
-                      productQuantityinCart > 0
-                        ? "text-gray-500 border-none cursor-not-allowed"
-                        : ""
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFormat("A3");
-                    }}
-                  >
-                    A3
-                  </button>
-                </div>
-                <div className="flex gap-4 text-sm">
-                <button
-                    disabled={productQuantityinCart > 0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFrame("без рамки");
-                    }}
-                  >
-                    <Image
+              {product.price.length > 3 ? (
+                  <div className="flex mt-4 items-center justify-between">
+                  <div className="flex gap-3 text-sm">
+                    <button
+                      type="button"
+                      disabled={productQuantityinCart > 0}
                       className={`${
-                        frame == "без рамки"
-                          ? "bg-orange-100 text-orange-900 p-1 rounded-md "
-                          : "text-gray-600 bg-gray-200 p-1 rounded-md"
+                        format === "A4"
+                          ? "text-orange-500 border-b-[1.5px] border-orange-500"
+                          : ""
                       } ${
                         productQuantityinCart > 0
-                          ? "text-gray-600 bg-gray-200 p-1 rounded-md"
+                          ? "text-gray-500 border-none cursor-not-allowed"
                           : ""
                       }`}
-                      size={"23"}
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    disabled={productQuantityinCart > 0}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFrame("с рамкой");
-                    }}
-                  >
-                    <Frame
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFormat("A4");
+                      }}
+                    >
+                      A4
+                    </button>
+                    <button
+                      type="button"
+                      disabled={productQuantityinCart > 0}
                       className={`${
-                        frame == "с рамкой"
-                          ? "bg-orange-100 text-orange-900 p-1 rounded-md "
-                          : "text-gray-600 bg-gray-200 p-1 rounded-md"
+                        format === "A3"
+                          ? "text-orange-500 border-b-[1.5px] border-orange-500"
+                          : ""
                       } ${
                         productQuantityinCart > 0
-                          ? "text-gray-600 bg-gray-200 p-1 rounded-md"
+                          ? "text-gray-500 border-none cursor-not-allowed"
                           : ""
                       }`}
-                      size={"23"}
-                    />
-                  </button>
-               
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFormat("A3");
+                      }}
+                    >
+                      A3
+                    </button>
+                  </div>
+                  <div className="flex gap-4 text-sm">
+                  <button
+                      disabled={productQuantityinCart > 0}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFrame("без рамки");
+                      }}
+                    >
+                      <Image
+                        className={`${
+                          frame == "без рамки"
+                            ? "bg-orange-100 text-orange-900 p-1 rounded-md "
+                            : "text-gray-600 bg-gray-200 p-1 rounded-md"
+                        } ${
+                          productQuantityinCart > 0
+                            ? "text-gray-600 bg-gray-200 p-1 rounded-md"
+                            : ""
+                        }`}
+                        size={"23"}
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      disabled={productQuantityinCart > 0}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFrame("с рамкой");
+                      }}
+                    >
+                      <Frame
+                        className={`${
+                          frame == "с рамкой"
+                            ? "bg-orange-100 text-orange-900 p-1 rounded-md "
+                            : "text-gray-600 bg-gray-200 p-1 rounded-md"
+                        } ${
+                          productQuantityinCart > 0
+                            ? "text-gray-600 bg-gray-200 p-1 rounded-md"
+                            : ""
+                        }`}
+                        size={"23"}
+                      />
+                    </button>
+                 
+                  </div>
                 </div>
-              </div>
+              ) : null}
               <div className="flex justify-between items-center mt-3">
                 <h3 className=" font-medium text-base text-gray-700 flex">
                   продано: {product.sold}
